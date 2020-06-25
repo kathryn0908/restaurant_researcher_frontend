@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Home from './components/Home';
+import RestaurantShowPage from './components/RestaurantShowPage';
+import RestaurantContainer from './containers/RestaurantContainer';
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component {
+
+    state={
+      restaurants:[]
+  }
+
+  componentDidMount(){
+      this.getRestaurants()
+  }
+
+  getRestaurants(){
+    fetch('http://127.0.0.1:8000/restaurants/')
+          .then(resp => resp.json())
+          .then(restaurants => this.setState({restaurants}))
+  }
+  render(){
+    return (
+      <Router>
+        <Switch>
+        <>
+        <Route  exact path='/' component={Home}/>
+        <Route path='/trendingrestaurants' component={RestaurantContainer} restaurants={this.state.restaurants}/>
+          
+        </>
+        </Switch>
+      </Router>
+     
+    );
+  }
 }
 
-export default App;
+
