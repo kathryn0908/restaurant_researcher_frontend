@@ -10,12 +10,9 @@ export default function RestaurantCard(props){
     }
 
     return(
-    <div className='card-container'>
         <div className="restaurant-card" onClick={handleClick}>
             <h1>{props.restaurant.name}</h1>
-            <img src={props.restaurant.thumb} alt='thumbnail'/>
-            <p>{props.restaurant.cuisines}</p>
+            <img className='restaurant-image' src={props.restaurant.thumb} alt='thumbnail'/>
         </div>
-    </div>
     )
 }

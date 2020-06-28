@@ -4,13 +4,10 @@ import React from 'react'
 export default function TrendingCard(props){
    
     return(
-    <div className='card-container'>
-        <div className="restaurant-card">
+        <div className="trending-card">
             <h1>{props.trending.title}</h1>
-            <img src={props.trending.image_url} alt=""/>
+            <a className='trending-image' href={props.trending.url}><img  className='trending-image' src={props.trending.image_url} alt=""/></a>
             <p>{props.trending.description}</p>
-            <a href={props.trending.url}>Check out more here!</a> 
         </div>
-    </div>
     )
 }

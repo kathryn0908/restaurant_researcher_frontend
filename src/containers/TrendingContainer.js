@@ -9,11 +9,16 @@ export default function TrendingContainer(props){
 
     return(
         <>
-        <div className='body'>
+        <div className='body-containers'>
             <AppBar />
             <h1 className='header'>Trending Denver Restaurants</h1>
-            <SearchBar />
-        {displayTrendingRestaurants}
+                <SearchBar trending={props.trending} />
+        </div>
+        <div>
+            <span className='body-containers'/>
+        </div>
+        <div className='container'>
+            {displayTrendingRestaurants}
         </div>
         </>
     )
