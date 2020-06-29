@@ -1,6 +1,6 @@
 import React from 'react';
 import AppBar from '../styles/AppBar'
-import SearchBar from '../styles/SearchBar'
+
 
 
 

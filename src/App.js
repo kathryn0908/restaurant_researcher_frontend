@@ -4,13 +4,18 @@ import Home from './components/Home';
 import RestaurantShowPage from './components/RestaurantShowPage';
 import RestaurantContainer from './containers/RestaurantContainer';
 import TrendingContainer from './containers/TrendingContainer';
+import Login from './components/Login'
+import Profile from './components/Profile'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 export default class App extends Component {
 
   state={
       restaurants:[],
-      trending: []
+      trending: [],
+      reviews: [],
+      favorites: [],
+      userReviews: []
   }
 
   componentDidMount(){
@@ -31,6 +36,24 @@ export default class App extends Component {
       .then(trending => this.setState({trending}))
   }
 
+  login = (user, history) =>{
+    
+    fetch('http://127.0.0.1:8000/login/',{
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify({user})
+    })
+    .then(resp => resp.json())
+    .then(({user,  jwt}) => {
+      // user: {userReviews, favorites},-- goes in between user, jwt
+      localStorage.setItem('token',jwt)
+      // this.setState({userReviews, favorites})
+      history.push('/profile')
+    })
+  }
+
   render(){
     return (
       <Router>
@@ -39,6 +62,8 @@ export default class App extends Component {
         <Route path='/trendingrestaurants' render={(props) => <TrendingContainer {...props} trending={this.state.trending} />}/>
         <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants}/>}/>
         <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}/>}/>
+        <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
+        <Route path='/profile' render={(props) => <Profile {...props}/>}/>
         </Switch>
       </Router>
      
