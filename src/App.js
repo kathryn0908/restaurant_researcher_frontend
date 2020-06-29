@@ -16,13 +16,13 @@ export default class App extends Component {
       reviews: [],
       favorites: [],
       userReviews: [],
-      users: []
+      user: {}
   }
 
   componentDidMount(){
       this.getRestaurants()
       this.getTrending()
-      this.getUsers()
+      // this.getUsers()
   }
 
   getRestaurants(){
@@ -44,25 +44,26 @@ export default class App extends Component {
       .then(users => this.setState({users}))
   }
 
-  addNewUser(newUser){
-    this.setState({users: [...this.state.users, newUser]})
-  }
+  // addNewUser(newUser){
+  //   this.setState({users: [...this.state.users, newUser]})
+  // }
 
   login = (user, history) => {
-    
+     
     fetch('http://127.0.0.1:8000/login/',{
       method: "POST",
       headers: {
         "Content-type": "application/json"
       },
-      body: JSON.stringify({user})
+      body: JSON.stringify(user)
     })
     .then(resp => resp.json())
-    .then(({user,  jwt}) => {
-      // user: {userReviews, favorites},-- goes in between user, jwt
-      localStorage.setItem('token',jwt)
-      // this.setState({userReviews, favorites})
-      history.push('/')
+    .then(result => {
+      localStorage.setItem('token', result.token)
+      this.setState({
+          user: result
+      })
+      history.push('/profile')
     })
   }
 
