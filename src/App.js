@@ -5,7 +5,7 @@ import RestaurantShowPage from './components/RestaurantShowPage';
 import RestaurantContainer from './containers/RestaurantContainer';
 import TrendingContainer from './containers/TrendingContainer';
 import Login from './components/Login'
-import Profile from './components/Profile'
+import PrivateRoute from './containers/PrivateRoute'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
 export default class App extends Component {
@@ -15,12 +15,14 @@ export default class App extends Component {
       trending: [],
       reviews: [],
       favorites: [],
-      userReviews: []
+      userReviews: [],
+      users: []
   }
 
   componentDidMount(){
       this.getRestaurants()
       this.getTrending()
+      this.getUsers()
   }
 
   getRestaurants(){
@@ -36,7 +38,17 @@ export default class App extends Component {
       .then(trending => this.setState({trending}))
   }
 
-  login = (user, history) =>{
+  getUsers(){
+    fetch('http://127.0.0.1:8000/users/')
+      .then(resp => resp.json())
+      .then(users => this.setState({users}))
+  }
+
+  addNewUser(newUser){
+    this.setState({users: [...this.state.users, newUser]})
+  }
+
+  login = (user, history) => {
     
     fetch('http://127.0.0.1:8000/login/',{
       method: "POST",
@@ -50,7 +62,7 @@ export default class App extends Component {
       // user: {userReviews, favorites},-- goes in between user, jwt
       localStorage.setItem('token',jwt)
       // this.setState({userReviews, favorites})
-      history.push('/profile')
+      history.push('/')
     })
   }
 
@@ -63,7 +75,7 @@ export default class App extends Component {
         <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants}/>}/>
         <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
-        <Route path='/profile' render={(props) => <Profile {...props}/>}/>
+        <PrivateRoute exact path='/profile' addNewUser={this.addNewUser}/>
         </Switch>
       </Router>
      
