@@ -11,11 +11,10 @@ export default function Restaurant(props){
                 <p>Hours of Operation: {props.restaurant.timings}</p>
                 <p>Phone number: {props.restaurant.phone_number}</p>
                 <p>Address: {props.restaurant.address}</p>
-                <p>Has Online Delivery: {props.restaurant.has_online_delivery.toString()}</p>
-                <p>Is Delivering Now: {props.restaurant.is_delivering_now.toString()}</p>
-                <p>Average Cost for Two: ${props.restaurant.average_cost_for_two}</p>
+                <p>Delivery: {props.restaurant.has_online_delivery.toString()}</p>
+                <p>Average Cost for Two: ${props.restaurant.average_cost_for_two}(approx)</p>
                 <p>Highlights: {props.restaurant.highlights}</p>
-                <a href={props.restaurant.url}>Website</a>
+                <a href={props.restaurant.url}>Order Online</a>
             </div>
         </>
     )

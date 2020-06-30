@@ -12,7 +12,7 @@ export default class Login extends Component{
 
     handleSubmit = (event) => {
         event.preventDefault()
-        this.props.login(this.state, this.props.history)
+        this.props.signup(this.state, this.props.history)
     }
 
     handleChange = (event) => {
@@ -25,16 +25,15 @@ export default class Login extends Component{
             <>
             <AppBar />
             <div className='login-container'>
-                <form className='login' onSubmit={this.handleSubmit}>
-                    <label className='login-header'>Login</label>
-                    <div className='input-container'>
+            <form className='login' onSubmit={this.handleSubmit}>
+                <label className='login-header'>Sign Up</label>
+                <div className='input-container'>
                     <input className='login-input' value={this.state.username} placeholder='username' name='username' onChange={this.handleChange}/>
                     <input className='login-input' value={this.state.email} placeholder='email' name='email' onChange={this.handleChange}/>
                     <input className='login-input' type='password' value={this.state.password} placeholder='password' name='password' onChange={this.handleChange}/>
-                    <input className='login-submit' type='submit' value='Login'/>
-                    </div>
-                    <Link className='link' to='/signup'>New User? Signup Here</Link>
-                </form>
+                    <input className='login-submit' type='submit' value='login'/>
+                </div>
+            </form>
             </div>
             </>
         )

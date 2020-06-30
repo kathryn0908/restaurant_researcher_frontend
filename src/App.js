@@ -5,6 +5,7 @@ import RestaurantShowPage from './components/RestaurantShowPage';
 import RestaurantContainer from './containers/RestaurantContainer';
 import TrendingContainer from './containers/TrendingContainer';
 import Login from './components/Login'
+import SignUp from './components/SignUp'
 import PrivateRoute from './containers/PrivateRoute'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 
@@ -16,13 +17,14 @@ export default class App extends Component {
       reviews: [],
       favorites: [],
       userReviews: [],
-      user: {}
+      user: {},
+      users: []
   }
 
   componentDidMount(){
       this.getRestaurants()
       this.getTrending()
-      // this.getUsers()
+      this.getUsers()
   }
 
   getRestaurants(){
@@ -44,9 +46,29 @@ export default class App extends Component {
       .then(users => this.setState({users}))
   }
 
-  // addNewUser(newUser){
-  //   this.setState({users: [...this.state.users, newUser]})
-  // }
+  signup = (user, history) => {
+    fetch('http://127.0.0.1:8000/users/',{
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(user)
+    })
+    .then(resp => resp.json())
+    .then(result => {
+      localStorage.setItem('token', result.password)
+      this.setState({
+        user: result
+      })
+      this.addNewUser(this.state.user)
+      history.push('/profile')
+    })
+
+  }
+
+  addNewUser(newUser){
+    this.setState({users: [...this.state.users, newUser]})
+  }
 
   login = (user, history) => {
      
@@ -58,10 +80,10 @@ export default class App extends Component {
       body: JSON.stringify(user)
     })
     .then(resp => resp.json())
-    .then(result => {
-      localStorage.setItem('token', result.token)
+    .then(user => {
+      localStorage.setItem('token', user.access)
       this.setState({
-          user: result
+          user: user
       })
       history.push('/profile')
     })
@@ -76,6 +98,7 @@ export default class App extends Component {
         <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants}/>}/>
         <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
+        <Route path='/signup' render={(props) => <SignUp {...props} signup={this.signup}/>}/>
         <PrivateRoute exact path='/profile' addNewUser={this.addNewUser}/>
         </Switch>
       </Router>

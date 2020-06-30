@@ -168,6 +168,71 @@
 
 }
 
+.signup{
+  font-family: 'Kanit', sans-serif;
+  font-size: 55px;
+
+}
+
+.login-container{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.login-header{
+  font-family: 'Kanit', sans-serif;
+  font-size: 45px;
+  display: flex;
+  justify-content: center;
+  margin-top: 32px;
+  
+}
+
+.input-container{
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.login{
+  display: flex;
+  width: 400px;
+  height: 375px;
+  display: flex;
+  flex-direction: column;
+  background-color:rgb(255, 163, 102);
+  border-radius: 13px;
+}
+
+.link{
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.login-input{
+  margin: 5px;
+  padding: 5px;
+  border-radius: 4px;
+  border-color: rgb(255, 163, 102);
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.login-submit{
+  background-color: black;
+  color: white;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 9px;
+  border-color: rgb(255, 163, 102);
+  width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* RestaurantShowPage */
 .name{
   font-family: 'Kanit', sans-serif;
