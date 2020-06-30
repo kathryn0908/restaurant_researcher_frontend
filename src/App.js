@@ -16,7 +16,6 @@ export default class App extends Component {
       trending: [],
       reviews: [],
       favorites: [],
-      userReviews: [],
       user: {},
       users: []
   }
@@ -25,6 +24,8 @@ export default class App extends Component {
       this.getRestaurants()
       this.getTrending()
       this.getUsers()
+      this.getReviews()
+      this.getFavorites()
   }
 
   getRestaurants(){
@@ -46,6 +47,18 @@ export default class App extends Component {
       .then(users => this.setState({users}))
   }
 
+  getReviews(){
+    fetch('http://127.0.0.1:8000/reviews/')
+      .then(resp => resp.json())
+      .then(reviews => this.setState({reviews}))
+  }
+
+  getFavorites(){
+    fetch('http://127.0.0.1:8000/favorites/')
+      .then(resp => resp.json())
+      .then(favorites => this.setState({favorites}))
+  }
+
   signup = (user, history) => {
     fetch('http://127.0.0.1:8000/users/',{
       method: "POST",
@@ -55,8 +68,13 @@ export default class App extends Component {
       body: JSON.stringify(user)
     })
     .then(resp => resp.json())
+    // .then(res => console.log(res))
     .then(result => {
       localStorage.setItem('token', result.password)
+      localStorage.setItem('id', result.id)
+      localStorage.setItem('favorites', result.favorites)
+      localStorage.setItem('reviews', result.reviews)
+      localStorage.setItem('username', result.username)
       this.setState({
         user: result
       })
@@ -80,13 +98,73 @@ export default class App extends Component {
       body: JSON.stringify(user)
     })
     .then(resp => resp.json())
-    .then(user => {
-      localStorage.setItem('token', user.access)
-      this.setState({
-          user: user
-      })
-      history.push('/profile')
+    .then(res => console.log(res))
+    // .then(result => {
+    //   localStorage.setItem('user', result.user.id)
+    //   localStorage.setItem('token', result.access)
+    //   this.setState({
+    //       user: result
+    //   })
+    //   history.push('/profile')
+    // })
+  }
+
+  addFavorite(newFavorite, user, restaurant){
+    let foundFavorite = this.state.favorites.find(favorite => newFavorite.id === favorite.id)
+    if(!foundFavorite){
+      this.setState({favorites: [...this.state.favorites, newFavorite]})
+    }
+
+    const favorite = {
+      favorite: newFavorite,
+      user: user,
+      restaurant: restaurant
+    }
+
+    fetch('http://127.0.0.1:8000/favorites/',{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(favorite)
+    })   
+  }
+
+  removeFavorite(id){
+    let newFavorites = this.state.favorites.filter(favorite => favorite.id !== id)
+    this.setState({favorites: newFavorites})
+
+    fetch('http://127.0.0.1:8000/favorites/',{
+      method: "DELETE",
     })
+  }
+
+  addReview = (newReview, user, restaurant) => {
+    this.setState({reviews: [...this.state.reviews, newReview]})
+
+    const review={
+      review: newReview,
+      user: user,
+      restaurant: restaurant
+    }
+
+    fetch('http://127.0.0.1:8000/reviews/',{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(review)
+    })
+  }
+
+  removeReview(id){
+    let newReviews = this.state.reviews.filter(review => review.id !== id)
+    this.setState({reviews: newReviews})
+
+    fetch('http://127.0.0.1:8000/reviews/',{
+      method:"DELETE",
+    })
+    
   }
 
   render(){
@@ -95,11 +173,11 @@ export default class App extends Component {
         <Switch>
         <Route  exact path='/' render={(props) => <Home {...props} trending={this.state.trending} restaurants={this.state.restaurants} />} />
         <Route path='/trendingrestaurants' render={(props) => <TrendingContainer {...props} trending={this.state.trending} />}/>
-        <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants}/>}/>
-        <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}/>}/>
+        <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants} favorites={this.state.favorites} addFavorite={this.addFavorite} />}/>
+        <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
         <Route path='/signup' render={(props) => <SignUp {...props} signup={this.signup}/>}/>
-        <PrivateRoute exact path='/profile' addNewUser={this.addNewUser}/>
+        <PrivateRoute exact path='/profile' addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} />
         </Switch>
       </Router>
      

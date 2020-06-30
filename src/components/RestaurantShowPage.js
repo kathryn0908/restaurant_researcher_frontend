@@ -3,6 +3,7 @@ import AppBar from '../styles/AppBar'
 import Restaurant from './Restaurant'
 
 
+
 export default function RestaurantShowPage(props){
    
    const displayRestaurant = (id) => { 
@@ -10,7 +11,7 @@ export default function RestaurantShowPage(props){
         let found = props.restaurants.find(restaurant => restaurant.id == id)
         
             if(found){
-                return <Restaurant {...props} restaurant={found} />
+                return <Restaurant {...props} restaurant={found} addReview={props.addReview} reviews={props.reviews} />
             }
     }
     

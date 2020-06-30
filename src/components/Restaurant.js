@@ -1,4 +1,5 @@
 import React from 'react'
+import ReviewForm from './Review'
 
 export default function Restaurant(props){
 
@@ -15,6 +16,7 @@ export default function Restaurant(props){
                 <p>Average Cost for Two: ${props.restaurant.average_cost_for_two}(approx)</p>
                 <p>Highlights: {props.restaurant.highlights}</p>
                 <a href={props.restaurant.url}>Order Online</a>
+                <ReviewForm  {...props} addReview={props.addReview} reviews={props.reviews}/>
             </div>
         </>
     )
