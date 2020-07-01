@@ -7,14 +7,17 @@ export default class Review extends Component{
 
     handleSubmit = (event) => {
         event.preventDefault()
-        const user = localStorage.getItem('id')
-        this.props.addReview(this.state, user, this.props.match.params.id)
+        const user = localStorage.getItem('user')
+        const {id} = this.props.match.params
+        const {review} = this.state
+        this.props.addReview(review, user, id)
     }
 
     handleChange = (event) => {
         const { name, value } = event.target
         this.setState({[name]: value})
     }
+
 
     render(){
         return(

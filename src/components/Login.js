@@ -11,8 +11,9 @@ export default class Login extends Component{
     }
 
     handleSubmit = (event) => {
+        const {username, email, password} = this.state
         event.preventDefault()
-        this.props.login(this.state, this.props.history)
+        this.props.login(username, email, password, this.props.history)
     }
 
     handleChange = (event) => {

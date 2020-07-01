@@ -4,6 +4,7 @@ import Restaurant from './Restaurant'
 
 
 
+
 export default function RestaurantShowPage(props){
    
    const displayRestaurant = (id) => { 
@@ -14,7 +15,7 @@ export default function RestaurantShowPage(props){
                 return <Restaurant {...props} restaurant={found} addReview={props.addReview} reviews={props.reviews} />
             }
     }
-    
+
 
     return(
         <>

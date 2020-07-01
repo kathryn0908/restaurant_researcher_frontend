@@ -74,7 +74,7 @@ export default class App extends Component {
       localStorage.setItem('id', result.id)
       localStorage.setItem('favorites', result.favorites)
       localStorage.setItem('reviews', result.reviews)
-      localStorage.setItem('username', result.username)
+      localStorage.setItem('user', result.username)
       this.setState({
         user: result
       })
@@ -88,8 +88,9 @@ export default class App extends Component {
     this.setState({users: [...this.state.users, newUser]})
   }
 
-  login = (user, history) => {
-     
+  login = (username, email, password, history) => {
+    const user = {username, email, password}
+    localStorage.setItem('user', username)
     fetch('http://127.0.0.1:8000/login/',{
       method: "POST",
       headers: {
@@ -98,16 +99,15 @@ export default class App extends Component {
       body: JSON.stringify(user)
     })
     .then(resp => resp.json())
-    .then(res => console.log(res))
-    // .then(result => {
-    //   localStorage.setItem('user', result.user.id)
-    //   localStorage.setItem('token', result.access)
-    //   this.setState({
-    //       user: result
-    //   })
-    //   history.push('/profile')
-    // })
+    .then(result => {
+      localStorage.setItem('token', result.access)
+    })
+    .then(result => {
+        this.setState({user: result})
+      history.push('/profile')
+    })
   }
+ 
 
   addFavorite(newFavorite, user, restaurant){
     let foundFavorite = this.state.favorites.find(favorite => newFavorite.id === favorite.id)
@@ -139,22 +139,21 @@ export default class App extends Component {
     })
   }
 
-  addReview = (newReview, user, restaurant) => {
-    this.setState({reviews: [...this.state.reviews, newReview]})
-
-    const review={
-      review: newReview,
-      user: user,
-      restaurant: restaurant
-    }
-
+  addReview = (review, user, restaurant) => {
     fetch('http://127.0.0.1:8000/reviews/',{
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(review)
-    })
+      body: JSON.stringify({review, user, restaurant})
+    }).then(resp => resp.json())
+    .then(newReview => {
+      localStorage.setItem('reviews', newReview.review)
+      localStorage.setItem('restaurant', newReview.restaurant)
+      this.setState({
+        reviews: [...this.state.reviews, newReview]
+      })
+      })
   }
 
   removeReview(id){
@@ -177,7 +176,7 @@ export default class App extends Component {
         <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
         <Route path='/signup' render={(props) => <SignUp {...props} signup={this.signup}/>}/>
-        <PrivateRoute exact path='/profile' addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} />
+        <PrivateRoute exact path='/profile' addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} restaurants={this.state.restaurants}/>
         </Switch>
       </Router>
      

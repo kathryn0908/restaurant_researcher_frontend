@@ -1,7 +1,17 @@
 import React from 'react'
-import ReviewForm from './Review'
+import ReviewForm from './ReviewForm'
+import ReviewCard from './ReviewCard'
 
 export default function Restaurant(props){
+
+    const findReviews = (id) => {
+        const foundReview = props.reviews.filter( (review) => {
+            return review.restaurant == id;
+         })
+        return foundReview.map((review) => {
+             return <ReviewCard review={review} />
+         })
+     }
 
     return(
         <>
@@ -17,6 +27,7 @@ export default function Restaurant(props){
                 <p>Highlights: {props.restaurant.highlights}</p>
                 <a href={props.restaurant.url}>Order Online</a>
                 <ReviewForm  {...props} addReview={props.addReview} reviews={props.reviews}/>
+                {findReviews(props.match.params.id)} 
             </div>
         </>
     )
