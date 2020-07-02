@@ -55,7 +55,7 @@ searchResultsContainer = () => {
                     <form>
                         <input  className="search-input" id="search" type="text" placeholder="Search" value={this.state.term}
                             onChange={event=>this.onInputChange(event.target.value)} />
-                        <input type="submit" className='submit' />
+                        {/* <input type="submit" className='submit' /> */}
                     </form>
                 </div>
             </div>

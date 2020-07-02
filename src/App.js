@@ -74,7 +74,7 @@ export default class App extends Component {
       localStorage.setItem('id', result.id)
       localStorage.setItem('favorites', result.favorites)
       localStorage.setItem('reviews', result.reviews)
-      localStorage.setItem('user', result.username)
+      localStorage.setItem('username', result.username)
       this.setState({
         user: result
       })
@@ -90,7 +90,19 @@ export default class App extends Component {
 
   login = (username, email, password, history) => {
     const user = {username, email, password}
-    localStorage.setItem('user', username)
+    localStorage.setItem('username', username)
+    let u = this.state.users.find(user => localStorage.getItem('username') == user.username)
+    
+    if(u){
+      localStorage.setItem('id', u.id)
+    }
+    let userReviews = this.state.reviews.filter(review => localStorage.getItem('id') == review.user)
+    console.log(userReviews)
+    if(userReviews){
+      localStorage.setItem('reviews', JSON.stringify(userReviews.review))
+      localStorage.setItem('restaurants', JSON.stringify(userReviews.restaurant))
+    }
+    
     fetch('http://127.0.0.1:8000/login/',{
       method: "POST",
       headers: {
@@ -107,7 +119,6 @@ export default class App extends Component {
       history.push('/profile')
     })
   }
- 
 
   addFavorite(newFavorite, user, restaurant){
     let foundFavorite = this.state.favorites.find(favorite => newFavorite.id === favorite.id)
@@ -148,8 +159,10 @@ export default class App extends Component {
       body: JSON.stringify({review, user, restaurant})
     }).then(resp => resp.json())
     .then(newReview => {
+      console.log(newReview)
       localStorage.setItem('reviews', newReview.review)
       localStorage.setItem('restaurant', newReview.restaurant)
+      console.log(localStorage.getItem('restaurant'))
       this.setState({
         reviews: [...this.state.reviews, newReview]
       })

@@ -3,7 +3,6 @@ import React from 'react'
 
 
 export default function RestaurantCard(props){
-    // const {name, thumb, cuisines, id} = props
 
     const handleClick = () => {
         props.history.push(`/restaurants/${props.restaurant.id}`)

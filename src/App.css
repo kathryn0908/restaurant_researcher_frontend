@@ -1,9 +1,9 @@
 
 .body{
   background: linear-gradient(
-    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.4),
     rgba(0, 0, 0, 0)
-  ),url(https://images.unsplash.com/photo-1522336572468-97b06e8ef143?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80);
+  ),url(https://images.unsplash.com/photo-1581991717893-55f4b9f62be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -14,7 +14,7 @@
   background: linear-gradient(
     rgba(0, 0, 0, 0.2),
     rgba(0, 0, 0, 0)
-  ),url(https://images.unsplash.com/photo-1522336572468-97b06e8ef143?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1055&q=80);
+  ),url(https://images.unsplash.com/photo-1581991717893-55f4b9f62be0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80);
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: 50% 50%;
@@ -33,22 +33,18 @@
   font-family: 'Kanit', sans-serif;
   font-size: 150px;
   margin-top: 139px;
-  margin-left: 400px;
+  margin-left: 350px;
   margin-bottom: -10px;
   color: white;
-  -webkit-text-stroke: 1px rgb(255, 163, 102);
 }
 
 .header{
   font-family: 'Kanit', sans-serif;
   font-size: 60px;
   margin-top: 130px;
-  margin-top: 130px;
   margin-left: 425px;
   margin-bottom: 20px;
   color: white;
-  -webkit-text-stroke: 1px rgb(255, 163, 102);
-
 }
 
 .background{
@@ -61,15 +57,14 @@
   font-family: 'Kanit', sans-serif;
   font-style: italic;
   font-size: 35px;
-  margin-top: 0px;
+  margin-top: -5px;
   margin-left: 375px;
   color: white;
-  -webkit-text-stroke: 1px rgb(255, 163, 102);
 }
 
 .AppBar{
   height: 82px;
-  background-color: black;
+  background-color: rgba(20, 110, 140, .8);
   color: white;
   display: flex;
 
@@ -128,9 +123,9 @@
   padding-top: -1px;
   margin-top: -1px;
   border-radius: 10%;
-  background-color:rgb(255, 163, 102);
+  background-color:rgb(20, 110, 140);
   color: white;
-  border-color: rgb(255, 163, 102);
+  border-color: rgb(20, 110, 140);
 }
 
 
@@ -177,7 +172,8 @@
 .login-container{
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: 50px;
+  color:white;
 }
 
 .login-header{
@@ -201,7 +197,7 @@
   height: 375px;
   display: flex;
   flex-direction: column;
-  background-color:rgb(255, 163, 102);
+  background-color:rgb(20, 110, 140);
   border-radius: 13px;
 }
 
@@ -214,7 +210,7 @@
   margin: 5px;
   padding: 5px;
   border-radius: 4px;
-  border-color: rgb(255, 163, 102);
+  /* border-color: rgb(20, 110, 140); */
   width: 300px;
   margin-left: auto;
   margin-right: auto;
@@ -222,12 +218,11 @@
 }
 
 .login-submit{
-  background-color: black;
-  color: white;
-  margin: 5px;
+  color: black;
+  margin: 7px;
   padding: 5px;
   border-radius: 9px;
-  border-color: rgb(255, 163, 102);
+  /* border-color: rgb(250, 182, 145); */
   width: 200px;
   margin-left: auto;
   margin-right: auto;
@@ -238,8 +233,6 @@
   font-family: 'Kanit', sans-serif;
   font-size: 55px;
   color: black;
-  -webkit-text-stroke: 1.5px rgb(255, 163, 102);
-
 }
 .page-styling{
   color:black;
@@ -248,6 +241,13 @@
   display: flex;
   flex-direction: column;
   justify-items: center;
+  
+}
+
+.rest-info{
+  margin-left: 75px;
+  margin-bottom: -8px;
+  font-family: 'Inter', sans-serif;
 }
 
 .showpage-background{
@@ -256,11 +256,29 @@
 
 .name-con{
   display: flex;
-  justify-content: center;
+  flex-direction: row;
+  margin-left: 75px;
   background-repeat: no-repeat;
   background-position: 50% 50%;
   font-family: 'Kanit', sans-serif;
   
+}
+
+.order-online{
+  color:black;
+  font-family: 'Kanit', sans-serif;
+  font-size: 19px;
+  display: flex;
+  flex-direction: column;
+  
+
+}
+
+.order-link{
+  margin-top: -30px;
+  font-size: xx-large;
+  margin-left: 75px;
+
 }
 
 .showpage-image{
@@ -269,12 +287,126 @@
 }
 
 .searchresults-container{
-  background-color: white;
   width: fit-content;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   margin-top: 35px;
+}
+
+.review-container{
+  margin-left: 75px;
+}
+
+.review-form{
+  display: flex;
+  flex-direction: column;
+}
+
+
+.review-input{
+  width: 500px;
+  height:200px;
+  border-radius: 3px;
+  margin-top: 30px;
+  margin-bottom: 68px;
+  border-width: 5px;
+  border-color: rgb(20, 110, 140);
+}
+
+.button-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.submit-review{
+  margin-top: -63px;
+  width: 85px;
+  height: 35px;
+  background-color: rgb(250, 182, 145);
+  font-family: 'Kanit', sans-serif;
+  color: white;
+  border-radius: 7px;
+  border-color: white;
+}
+
+.review-button{
+  margin-top: 40px;
+  width: 200px;
+  height: 60px;
+  margin-left: 75px;
+  font-family: 'Kanit', sans-serif;
+  font-size: 20px;
+  color: white;
+  background-color: rgb(250, 182, 145);
+  border-radius: 7px;
+  border-color: white;
+}
+
+.review-header{
+  margin-left: 75px;
+  margin-top: 24px;
+  font-size: 28px;
+}
+
+.reviews-container{
+  margin-left: 75px;
+
+}
+
+.review-card-container{
+  border-top: 1px rgba(0, 0, 0, 0.2);
+  border-style: solid none;
+  width: 75%;
+  border-bottom: none;
+}
+
+.reviewer-username{
+  font-size: 25px;
+}
+
+.review-info{
+  font-size: 20px;
+  font-family: 'Inter', sans-serif;
+
+}
+
+/* Profile Styling */ 
+.welcome-profile{
+  font-size: 65px;
+  margin-left: 75px;
+
+}
+
+.header-profile{
+  margin-left: 75px;
+  font-size: 35px;
+
+}
+.subheader-profile{
+  margin-left: 75px;
+  font-size: 20px;
+
+}
+
+.restaurant-name-profile{
+  margin-left: 75px;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.review-profile{
+  margin-left: 10px;
+  font-size: 15px;
+}
+
+.profile-review-container{
+  margin-left: 75px;
+  border: 1px rgba(0, 0, 0, 0.2);
+  border-style: solid;
+  width: 60%;
+  padding: 5px;
+  border-radius: 3px;
 }
  
 
