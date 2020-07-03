@@ -21,7 +21,7 @@ filterCards = () => {
   if(this.props.restaurants){
       return this.props.restaurants.filter(restaurant=>{
           return (
-              restaurant.name.toLowerCase().includes(this.state.term) 
+              restaurant.name.toLowerCase().includes(this.state.term) || restaurant.cuisines.toLowerCase().includes(this.state.term)
           )
       })
   } else if(this.props.trending){

@@ -13,6 +13,7 @@ export default function TrendingContainer(props){
             <AppBar />
             <h1 className='header'>Trending Denver Restaurants</h1>
                 <SearchBar trending={props.trending} />
+                <p className='subheader'>Browse our blogs on local Denver restaurants, updated weekly!</p>
         </div>
         <div>
             <span className='body-containers'/>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class Review extends Component{
     state={
@@ -34,7 +35,7 @@ export default class Review extends Component{
                         <input className='review-input' type='text' value={this.state.review} name='review' onChange={this.handleChange}/>
                        <div className='button-container'>
                            <input className='submit-review'  type='submit' />
-                           <button onClick={this.toggleForm} className='submit-review'>Close Form</button>
+                           <button onClick={this.toggleForm} className='close-review'><FontAwesomeIcon icon="times-circle" size='lg'/></button>
                         </div> 
                     </form>
                 </div>

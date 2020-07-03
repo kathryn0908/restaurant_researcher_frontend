@@ -13,7 +13,7 @@ export default function RestaurantContainer(props){
 
     return(
         <>
-        <div className='body-containers'>
+        <div className='localrestaurant-container'>
             <AppBar />
             <h1 className='header'>Local Denver Restaurants</h1>
             <SearchBar {...props} restaurants={props.restaurants}/>

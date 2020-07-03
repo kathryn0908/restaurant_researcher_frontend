@@ -8,6 +8,11 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import PrivateRoute from './containers/PrivateRoute'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { faUser, faTimesCircle, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fas } from '@fortawesome/free-solid-svg-icons'
+
+library.add(fas, faUser, faTimesCircle, faCheck)
 
 export default class App extends Component {
 
