@@ -8,7 +8,7 @@ export default function AppBar(){
             <Link className='menu' to='/trendingrestaurants'>Trending</Link>
             <Link className='menu' to='/restaurants'>Local Restaurants</Link>
             <Link className='menu' to='/login'>Login</Link>
-            <Link className='menu' to='/profile'><img src='/Users/katie/Capstone/restaurant_frontend/restaurant_researcher_frontend/src/styles/profile.png' alt='My Profile'/></Link>
+            <Link className='menu' to='/profile'>My Profile</Link>
         
         </div>
     )
