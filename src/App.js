@@ -97,17 +97,12 @@ export default class App extends Component {
     const user = {username, email, password}
     localStorage.setItem('username', username)
     let u = this.state.users.find(user => localStorage.getItem('username') == user.username)
-    
     if(u){
       localStorage.setItem('id', u.id)
-    }
-    let userReviews = this.state.reviews.filter(review => localStorage.getItem('id') == review.user)
-    console.log(userReviews)
-    if(userReviews){
-      localStorage.setItem('reviews', JSON.stringify(userReviews.review))
-      localStorage.setItem('restaurants', JSON.stringify(userReviews.restaurant))
-    }
-    
+      let reviews = u.reviews.map(u => u.review)
+      localStorage['reviews'] = JSON.stringify(reviews)
+      console.log(u)
+    } 
     fetch('http://127.0.0.1:8000/login/',{
       method: "POST",
       headers: {
@@ -155,19 +150,16 @@ export default class App extends Component {
     })
   }
 
-  addReview = (review, user, restaurant) => {
+  addReview = (review, user, name, id) => {
     fetch('http://127.0.0.1:8000/reviews/',{
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({review, user, restaurant})
+      body: JSON.stringify({review, user, name, id})
     }).then(resp => resp.json())
     .then(newReview => {
       console.log(newReview)
-      localStorage.setItem('reviews', newReview.review)
-      localStorage.setItem('restaurant', newReview.restaurant)
-      console.log(localStorage.getItem('restaurant'))
       this.setState({
         reviews: [...this.state.reviews, newReview]
       })
@@ -194,7 +186,7 @@ export default class App extends Component {
         <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
         <Route path='/signup' render={(props) => <SignUp {...props} signup={this.signup}/>}/>
-        <PrivateRoute exact path='/profile' addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} restaurants={this.state.restaurants}/>
+        <PrivateRoute exact path='/profile' users={this.state.users} addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} restaurants={this.state.restaurants}/>
         </Switch>
       </Router>
      

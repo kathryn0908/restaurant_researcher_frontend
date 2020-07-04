@@ -20,15 +20,14 @@ export default function Restaurant(props){
              return  <p className='highlights'><FontAwesomeIcon className='check' icon="check" size='md'/> {highlight}</p>
          })
      }
-     console.log(props.restaurant.highlights.split(',')[0])
+    
 
     return(
         <>
             <div className='name-con'>
-            <h1 className='name'>{props.restaurant.name}</h1>
+            <h1 className='name'>{props.restaurant.name}</h1> 
             </div>
             <div className='order-online'>
-                {/* <p className='order-link'>{props.restaurant.cuisines}</p> */}
                 <a className='order-link' href={props.restaurant.url}>Order Online</a>
             </div>
             <div className='page-styling'>

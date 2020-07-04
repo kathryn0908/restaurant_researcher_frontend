@@ -8,7 +8,7 @@ export default function PrivateRoute(props){
     return(
         localStorage.token 
         ? <Route {...props} render={(routerProps) => (
-            <Profile {...routerProps} addNewUser={props.addNewUser} favorites={props.favorites} reviews={props.reviews} removeFavorite={props.removeFavorite} restaurants={props.restaurants}/>
+            <Profile {...routerProps} users={props.users} addNewUser={props.addNewUser} favorites={props.favorites} reviews={props.reviews} removeFavorite={props.removeFavorite} restaurants={props.restaurants}/>
         )}/>
         : <Redirect to='/login' />
     )
