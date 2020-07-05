@@ -8,11 +8,11 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import PrivateRoute from './containers/PrivateRoute'
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import { faUser, faTimesCircle, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faTimesCircle, faCheck, faThumbsUp, faStar } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fas } from '@fortawesome/free-solid-svg-icons'
 
-library.add(fas, faUser, faTimesCircle, faCheck)
+library.add(fas, faUser, faTimesCircle, faCheck, faThumbsUp, faStar)
 
 export default class App extends Component {
 
@@ -73,8 +73,8 @@ export default class App extends Component {
       body: JSON.stringify(user)
     })
     .then(resp => resp.json())
-    // .then(res => console.log(res))
     .then(result => {
+      console.log(result)
       localStorage.setItem('token', result.password)
       localStorage.setItem('id', result.id)
       localStorage.setItem('favorites', result.favorites)
@@ -120,43 +120,45 @@ export default class App extends Component {
     })
   }
 
-  addFavorite(newFavorite, user, restaurant){
-    let foundFavorite = this.state.favorites.find(favorite => newFavorite.id === favorite.id)
-    if(!foundFavorite){
-      this.setState({favorites: [...this.state.favorites, newFavorite]})
-    }
-
-    const favorite = {
-      favorite: newFavorite,
-      user: user,
-      restaurant: restaurant
-    }
-
+  addFavorite = (user, restaurant) => {
+   
+    console.log(user)
+    console.log(restaurant)
     fetch('http://127.0.0.1:8000/favorites/',{
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(favorite)
-    })   
+      body: JSON.stringify({user, restaurant})
+    }).then(resp => resp.json())
+      .then(newFavorite => {
+        console.log(newFavorite) })
+    //   // let foundFavorite = this.state.favorites.find(favorite => newFavorite.id === favorite.id)
+    //   // if(!foundFavorite){
+    //     // this.setState({favorites: [...this.state.favorites, newFavorite]})
+    //   // }
+    // })
   }
 
-  removeFavorite(id){
-    let newFavorites = this.state.favorites.filter(favorite => favorite.id !== id)
-    this.setState({favorites: newFavorites})
-
-    fetch('http://127.0.0.1:8000/favorites/',{
+  removeFavorite = (id) => {
+    fetch(`http://127.0.0.1:8000/favorites/${id}`,{
       method: "DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
+    let newFavorites = this.state.favorites.filter(favorite => favorite.id !== id)
+    console.log(this.state.favorites)
+    this.setState({favorites: newFavorites})
   }
 
-  addReview = (review, user, name, id) => {
+  addReview = (review, user, name, restaurant) => {
     fetch('http://127.0.0.1:8000/reviews/',{
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({review, user, name, id})
+      body: JSON.stringify({review, user, name, restaurant})
     }).then(resp => resp.json())
     .then(newReview => {
       console.log(newReview)
@@ -166,14 +168,15 @@ export default class App extends Component {
       })
   }
 
-  removeReview(id){
+  removeReview = (id) => {
+    fetch(`http://127.0.0.1:8000/reviews/${id}/`,{
+      method:"DELETE",
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     let newReviews = this.state.reviews.filter(review => review.id !== id)
     this.setState({reviews: newReviews})
-
-    fetch('http://127.0.0.1:8000/reviews/',{
-      method:"DELETE",
-    })
-    
   }
 
   render(){
@@ -183,10 +186,10 @@ export default class App extends Component {
         <Route  exact path='/' render={(props) => <Home {...props} trending={this.state.trending} restaurants={this.state.restaurants} />} />
         <Route path='/trendingrestaurants' render={(props) => <TrendingContainer {...props} trending={this.state.trending} />}/>
         <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants} favorites={this.state.favorites} addFavorite={this.addFavorite} />}/>
-        <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite}/>}/>
+        <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite} removeFavorite={this.removeFavorite}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
         <Route path='/signup' render={(props) => <SignUp {...props} signup={this.signup}/>}/>
-        <PrivateRoute exact path='/profile' users={this.state.users} addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} restaurants={this.state.restaurants}/>
+        <PrivateRoute exact path='/profile' users={this.state.users} addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} restaurants={this.state.restaurants} removeReview={this.removeReview}/>
         </Switch>
       </Router>
      

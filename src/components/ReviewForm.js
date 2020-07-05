@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import StarRating from '../styles/StarRating'
 
 export default class Review extends Component{
     state={
@@ -10,11 +11,11 @@ export default class Review extends Component{
     handleSubmit = (event) => {
         event.preventDefault()
         const user = localStorage.getItem('id')
-        const {id} = this.props.match.params
+        const restaurant = this.props.match.params.id
+        console.log(restaurant)
         const {name} = this.props.restaurant
-        console.log(name)
         const {review} = this.state
-        this.props.addReview(review, user, name, id)
+        this.props.addReview(review, user, name, restaurant)
         event.target.reset()
     }
 
@@ -27,12 +28,15 @@ export default class Review extends Component{
         this.setState({reviewForm: !this.state.reviewForm})
     }
 
+   
+
 
 
     render(){
         if(!this.state.reviewForm){
             return(
                 <div className='review-container' onSubmit={this.handleSubmit}>
+                    <p>Rate your experience:</p><StarRating />
                     <form className='review-form'>
                         <input className='review-input' type='text' value={this.state.review} name='review' onChange={this.handleChange}/>
                        <div className='button-container'>

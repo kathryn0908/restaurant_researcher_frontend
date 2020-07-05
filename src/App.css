@@ -442,6 +442,46 @@
 
 }
 
+.like{
+  margin-left: 155px;
+  margin-top: -33px;
+}
+
+.like-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.like-button{
+  width: 188px;
+  height: 40px;
+  margin-left: 155px;
+  margin-top: -33px;
+  border-radius: 5px;
+  font-family: 'Kanit', sans-serif;
+  color: white;
+  background-color:rgb(252, 186, 3);
+  border-color: white;
+  margin-left: 300px;
+  margin-top: -45px;
+}
+
+.star{
+  color:rgb(252, 186, 3);
+  margin-top: 63px;
+  margin-left: 21px;
+}
+
+.star-rating{
+  margin-left: 28px;
+  margin-top: 60px;
+}
+
+.review-star-rating{
+  margin-left: 52px;
+  margin-top: -56px;
+}
+
 /* Profile Styling */ 
 .welcome-profile{
   font-size: 65px;
@@ -461,12 +501,13 @@
 }
 
 .restaurant-name-profile{
-  margin-left: 75px;
+  margin-top: 8px;
   font-size: 18px;
   font-weight: bolder;
 }
 
 .review-profile{
+  margin-top: -30px;
   margin-left: 10px;
   font-size: 15px;
 }
@@ -475,9 +516,40 @@
   margin-left: 75px;
   border: 1px rgba(0, 0, 0, 0.2);
   border-style: solid;
-  width: 60%;
+  width: 550px;
   padding: 5px;
   border-radius: 3px;
+}
+
+.profile-star-rating{
+  display: flex;
+}
+
+.remove-review{
+  width:80px;
+  height: 25px;
+  background-color: rgb(252, 186, 3);
+  color: white;
+  border-radius: 5px;
+  border-color: white;
+  margin-left: 415px;
+  margin-top: -27px;
+  margin-bottom: 3px;
+}
+
+.user-fav-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
+
+.favorite-card{
+  width: 250px;
+}
+
+.favorite-name{
+  font-size: 20px;
 }
  
 
