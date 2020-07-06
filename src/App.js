@@ -159,13 +159,13 @@ export default class App extends Component {
     this.setState({favorites: newFavorites})
   }
 
-  addReview = (review, user, name, restaurant) => {
+  addReview = (review, user, name, restaurant, rating) => {
     fetch('http://127.0.0.1:8000/reviews/',{
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({review, user, name, restaurant})
+      body: JSON.stringify({review, user, name, restaurant, rating})
     }).then(resp => resp.json())
     .then(newReview => {
       console.log(newReview)
@@ -186,13 +186,13 @@ export default class App extends Component {
     this.setState({reviews: newReviews})
   }
 
-  addStarRating = (value, user) => {
+  addStarRating = (value, user, restaurant) => {
     fetch('http://127.0.0.1:8000/starratings/',{
       method: "POST",
       headers:{
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({value, user})
+      body: JSON.stringify({value, user, restaurant})
     }).then(resp => resp.json())
     .then(newRating => {
       console.log(newRating)
@@ -209,10 +209,10 @@ export default class App extends Component {
         <Route  exact path='/' render={(props) => <Home {...props} trending={this.state.trending} restaurants={this.state.restaurants} />} />
         <Route path='/trendingrestaurants' render={(props) => <TrendingContainer {...props} trending={this.state.trending} />}/>
         <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants} favorites={this.state.favorites} addFavorite={this.addFavorite} />}/>
-        <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite} removeFavorite={this.removeFavorite} addStarRating={this.addStarRating}/>}/>
+        <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite} removeFavorite={this.removeFavorite} addStarRating={this.addStarRating} ratings={this.state.starRatings}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
         <Route path='/signup' render={(props) => <SignUp {...props} signup={this.signup}/>}/>
-        <PrivateRoute exact path='/profile' users={this.state.users} addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} restaurants={this.state.restaurants} removeReview={this.removeReview}/>
+        <PrivateRoute exact path='/profile' users={this.state.users} addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} restaurants={this.state.restaurants} removeReview={this.removeReview} ratings={this.state.starRatings}/>
         </Switch>
       </Router>
      

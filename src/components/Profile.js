@@ -1,7 +1,8 @@
 import React from 'react'
 import AppBar from '../styles/AppBar'
-import OverallStarRating from '../styles/OverallStarRating'
 import FavoriteCard from './FavoriteCard'
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 
 export default function Profile(props){
 
@@ -30,7 +31,12 @@ export default function Profile(props){
                 
                 return (
                     <div className='profile-review-container'>
-                     <div className='profile-star-rating'><p className='restaurant-name-profile'>{r.name}</p> <OverallStarRating /></div>
+                     <div className='profile-star-rating'><p className='restaurant-name-profile'>{r.name}</p> <Box component="fieldset" mb={3} borderColor="transparent">
+                    <Rating
+                        name="rating"
+                        value={r.rating} 
+                    />
+                </Box></div>
                      <p className='review-profile'>{r.review}</p>
                      <button className='remove-review' reviews={props.reviews} review={r} onClick={handleClick}>Remove</button>
                     </div>

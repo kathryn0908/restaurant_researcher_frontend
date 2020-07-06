@@ -1,30 +1,28 @@
 import React, {Component} from 'react';
-// import Rating from '@material-ui/lab/Rating';
-// import Box from '@material-ui/core/Box';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 
 
-// export default function OverallStarRating(props) {
-//   const [value, setValue] = React.useState(2);
+export default class OverallStarRating extends Component{
+  state={
+    value:0
+  }
 
-//   return (
-//     <div>
-//       <Box component="fieldset" mb={3} borderColor="transparent">
-//         <Rating name="read-only" value={props.value} readOnly />
-//       </Box>
-//     </div>
-//   );
-// }
+  // handleChange = (event) => {
+  //   this.props.ratings
+  // }
 
-import BeautyStars from 'beauty-stars';
 
-export default class App extends Component {
-  state = { value: 0 };
-  render() {
+  render(){
     return (
-      <BeautyStars
-        value={this.state.value}
-        onChange={value => this.setState({ value })}
-      />
+      
+        <Box component="fieldset" mb={3} borderColor="transparent">
+          <Rating name="read-only" value={this.state.value} readOnly />
+          {/* onChange={this.handleChange} /> */}
+        </Box>
+      
     );
   }
+  
 }
+

@@ -1,4 +1,5 @@
 import React from 'react'
+import ImageWrapper from '../styles/ImageWrapper'
 
 
 
@@ -10,8 +11,7 @@ export default function RestaurantCard(props){
 
     return(
         <div className="restaurant-card" onClick={handleClick}>
-            <h1>{props.restaurant.name}</h1>
-            <img className='restaurant-image' src={props.restaurant.thumb} alt='thumbnail'/>
+            <ImageWrapper restaurant={props.restaurant}/>
         </div>
     )
 }

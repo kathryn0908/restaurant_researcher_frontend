@@ -12,7 +12,7 @@ export default function Restaurant(props){
          })
          const sortReviews = foundReview.reverse();
         return sortReviews.map((review) => {
-             return <ReviewCard review={review} key={review.id} />
+             return <ReviewCard review={review} key={review.id} ratings={props.ratings} />
          })
      }
 
@@ -35,7 +35,7 @@ export default function Restaurant(props){
         <>
             <div className='name-con'>
             <h1 className='name'>{props.restaurant.name}</h1> 
-            <div className='star-rating'><OverallStarRating /></div>
+            <div className='star-rating'><OverallStarRating {...props} ratings={props.ratings}/></div>
             </div>
             <div className='order-online'>
                 <a className='order-link' href={props.restaurant.url}>Order Online</a> 
