@@ -12,7 +12,6 @@ export default class Review extends Component{
         event.preventDefault()
         const user = localStorage.getItem('id')
         const restaurant = this.props.match.params.id
-        console.log(restaurant)
         const {name} = this.props.restaurant
         const {review} = this.state
         this.props.addReview(review, user, name, restaurant)

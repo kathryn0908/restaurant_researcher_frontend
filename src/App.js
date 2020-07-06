@@ -22,7 +22,8 @@ export default class App extends Component {
       reviews: [],
       favorites: [],
       user: {},
-      users: []
+      users: [],
+      starRatings: []
   }
 
   componentDidMount(){
@@ -31,6 +32,7 @@ export default class App extends Component {
       this.getUsers()
       this.getReviews()
       this.getFavorites()
+      this.getStarRatings()
   }
 
   getRestaurants(){
@@ -62,6 +64,12 @@ export default class App extends Component {
     fetch('http://127.0.0.1:8000/favorites/')
       .then(resp => resp.json())
       .then(favorites => this.setState({favorites}))
+  }
+
+  getStarRatings(){
+    fetch('http://127.0.0.1:8000/starratings/')
+      .then(resp => resp.json())
+      .then(ratings => this.setState({starRatings: ratings}))
   }
 
   signup = (user, history) => {
@@ -132,12 +140,11 @@ export default class App extends Component {
       body: JSON.stringify({user, restaurant})
     }).then(resp => resp.json())
       .then(newFavorite => {
-        console.log(newFavorite) })
-    //   // let foundFavorite = this.state.favorites.find(favorite => newFavorite.id === favorite.id)
-    //   // if(!foundFavorite){
-    //     // this.setState({favorites: [...this.state.favorites, newFavorite]})
-    //   // }
-    // })
+      let foundFavorite = this.state.favorites.find(favorite => newFavorite.id === favorite.id)
+      if(!foundFavorite){
+        this.setState({favorites: [...this.state.favorites, newFavorite]})
+      }
+    })
   }
 
   removeFavorite = (id) => {
@@ -179,6 +186,22 @@ export default class App extends Component {
     this.setState({reviews: newReviews})
   }
 
+  addStarRating = (value, user) => {
+    fetch('http://127.0.0.1:8000/starratings/',{
+      method: "POST",
+      headers:{
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({value, user})
+    }).then(resp => resp.json())
+    .then(newRating => {
+      console.log(newRating)
+      this.setState({
+        starRatings: [...this.state.starRatings, newRating]
+      })
+      })
+  }
+
   render(){
     return (
       <Router>
@@ -186,7 +209,7 @@ export default class App extends Component {
         <Route  exact path='/' render={(props) => <Home {...props} trending={this.state.trending} restaurants={this.state.restaurants} />} />
         <Route path='/trendingrestaurants' render={(props) => <TrendingContainer {...props} trending={this.state.trending} />}/>
         <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants} favorites={this.state.favorites} addFavorite={this.addFavorite} />}/>
-        <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite} removeFavorite={this.removeFavorite}/>}/>
+        <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite} removeFavorite={this.removeFavorite} addStarRating={this.addStarRating}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
         <Route path='/signup' render={(props) => <SignUp {...props} signup={this.signup}/>}/>
         <PrivateRoute exact path='/profile' users={this.state.users} addNewUser={this.addNewUser} favorites={this.state.favorites} reviews={this.state.reviews} removeFavorite={this.removeFavorite} restaurants={this.state.restaurants} removeReview={this.removeReview}/>

@@ -10,7 +10,7 @@ export default function RestaurantShowPage(props){
         let found = props.restaurants.find(restaurant => restaurant.id == id)
         
             if(found){
-                return <Restaurant {...props} key={found.id} restaurant={found} addReview={props.addReview} reviews={props.reviews} addFavorite={props.addFavorite} removeFavorite={props.removeFavorite}/>
+                return <Restaurant {...props} key={found.id} restaurant={found} addReview={props.addReview} reviews={props.reviews} addFavorite={props.addFavorite} removeFavorite={props.removeFavorite} addStarRating={props.addStarRating}/>
             }
     }
 

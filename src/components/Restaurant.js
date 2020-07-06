@@ -10,7 +10,8 @@ export default function Restaurant(props){
         const foundReview = props.reviews.filter( (review) => {
             return review.restaurant == id;
          })
-        return foundReview.map((review) => {
+         const sortReviews = foundReview.reverse();
+        return sortReviews.map((review) => {
              return <ReviewCard review={review} key={review.id} />
          })
      }
@@ -23,11 +24,8 @@ export default function Restaurant(props){
      }
 
      const handleClick = () => {
-        //  console.log()
          const user = localStorage.getItem('id')
          const restaurant = props.match.params.id
-         console.log(user)
-         console.log(restaurant)
          props.addFavorite(user, restaurant)
      }
     
@@ -55,7 +53,7 @@ export default function Restaurant(props){
                         <div className='highlights-container'>
                             {showHighlights()}
                         </div>
-                <ReviewForm  {...props} addReview={props.addReview} reviews={props.reviews}/>
+                <ReviewForm  {...props} addReview={props.addReview} reviews={props.reviews} addStarRating={props.addStarRating}/>
                 <h1 className='review-header'>Reviews</h1>
                 <div className='reviews-container'>
                 {findReviews(props.match.params.id)} 
