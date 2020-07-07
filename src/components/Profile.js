@@ -10,10 +10,10 @@ export default function Profile(props){
         let favorites = props.favorites.filter(favorite => localStorage.getItem('id') == favorite.user)
 
         if (favorites){
-            return favorites.map(f => <FavoriteCard favorite={f} removeFavorite={props.removeFavorite} restaurants={props.restaurants}/>)
+            return favorites.map(f => <FavoriteCard {...props} favorite={f} removeFavorite={props.removeFavorite} restaurants={props.restaurants}/>)
         }
 
-        else{
+        else if(favorites.length == 0){
             return <p className='subheader-profile'>You have no favorites!</p>
         }
     }
@@ -21,10 +21,10 @@ export default function Profile(props){
     const showUserReview = () => {
        
         let reviews = props.reviews.filter(review => localStorage.getItem('id') == review.user)
+        const sortReviews = reviews.reverse();
         
-        
-        if(reviews){
-            return reviews.map(r=> {
+        if(sortReviews){
+            return sortReviews.map(r=> {
                 const handleClick = () => {
                     props.removeReview(r.id)
                 }
@@ -36,14 +36,15 @@ export default function Profile(props){
                         name="rating"
                         value={r.rating} 
                     />
-                </Box></div>
+                    </Box>
+                    <p className='profile-date'>{r.created_at.slice(0,10)}</p></div> 
                      <p className='review-profile'>{r.review}</p>
                      <button className='remove-review' reviews={props.reviews} review={r} onClick={handleClick}>Remove</button>
                     </div>
                 )
             })
         }
-        else if(!reviews) {
+        else if(sortReviews.length == 0) {
            return (
                <div>
                     <p className='subheader-profile'>You have no reviews!</p>

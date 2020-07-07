@@ -19,7 +19,7 @@ export default class Review extends Component{
         const {review} = this.state
         const {rating} = this.state
         this.props.addReview(review, user, name, restaurant, rating)
-        event.target.reset()
+        this.setState({review: ''})
     }
 
     handleClick = (event) => {
@@ -29,6 +29,7 @@ export default class Review extends Component{
         console.log(this.props.match.params.id)
         const restaurant = this.props.match.params.id
         this.props.addStarRating(rating, user, restaurant)
+        document.querySelector('.review-form').reset();
       }
     
     change = (event) => {
@@ -53,9 +54,10 @@ export default class Review extends Component{
         if(!this.state.reviewForm){
             return(
                 <div className='review-container' onSubmit={this.handleSubmit}>
-                    <p>Rate your experience:</p>
-                    <div><Box component="fieldset" mb={3} borderColor="transparent">
+                    <p className='rate'>Rate your experience:</p>
+                    <div><Box className='stars' component="fieldset" mb={3} borderColor="transparent">
                         <Rating
+                            className='stars'
                             name="rating"
                             value={this.state.rating} 
                             onChange={this.change}

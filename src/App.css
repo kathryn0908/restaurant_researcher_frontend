@@ -228,7 +228,7 @@
   height: 375px;
   display: flex;
   flex-direction: column;
-  background-color:rgb(20, 110, 140);
+  background-color: yellowgreen;
   border-radius: 13px;
 }
 
@@ -241,7 +241,7 @@
   margin: 5px;
   padding: 5px;
   border-radius: 4px;
-  /* border-color: rgb(20, 110, 140); */
+  border-color:yellowgreen;
   width: 300px;
   margin-left: auto;
   margin-right: auto;
@@ -253,7 +253,7 @@
   margin: 7px;
   padding: 5px;
   border-radius: 9px;
-  /* border-color: rgb(250, 182, 145); */
+  border-color:yellowgreen;
   width: 200px;
   margin-left: auto;
   margin-right: auto;
@@ -339,6 +339,7 @@
   margin-top: -30px;
   font-size: xx-large;
   margin-left: 75px;
+  color: rgb(252, 186, 3);
 
 }
 
@@ -362,6 +363,7 @@
 .review-form{
   display: flex;
   flex-direction: column;
+  margin-top: -75px;
 }
 
 
@@ -371,8 +373,8 @@
   border-radius: 3px;
   margin-top: 30px;
   margin-bottom: 68px;
-  border-width: 5px;
-  border-color: rgb(20, 110, 140);
+  border-width: 1px;
+  border-color: black;
 }
 
 .button-container{
@@ -392,8 +394,8 @@
 }
 
 .close-review{
-  margin-top: -274px;
-  margin-left: 389px;
+  margin-top: -271px;
+  margin-left: 385px;
   width: 32px;
   height: 32px;
   background-color: rgb(252, 186, 3);
@@ -475,13 +477,20 @@
 }
 
 .star-rating{
-  margin-left: 28px;
-  margin-top: 60px;
+  margin-left: 13px;
+  margin-top: 51px;
+}
+
+.profile-date{
+  margin-right: auto;
+  margin-top: 11px;
+  font-size: 16px;
+  font-family: 'Inter', sans-serif;
 }
 
 .date{
   margin-right: auto;
-  margin-top: 6px;
+  margin-top: 9px;
   font-size: 18px;
   font-family: 'Inter', sans-serif;
 }
@@ -491,6 +500,16 @@
   flex-direction: row;
   margin-left: 52px;
   margin-top: -56px;
+  margin-bottom: -45px;
+}
+
+.rate{
+  margin-top:25px;
+}
+
+.stars{
+  margin-top: -21px;
+  margin-left: -10px;
 }
 
 /* Profile Styling */ 
@@ -518,7 +537,7 @@
 }
 
 .review-profile{
-  margin-top: -30px;
+  margin-top: -20px;
   margin-left: 10px;
   font-size: 15px;
 }
@@ -528,7 +547,8 @@
   border: 1px rgba(0, 0, 0, 0.2);
   border-style: solid;
   width: 550px;
-  padding: 5px;
+  padding: 7px;
+  margin-bottom: 5px;
   border-radius: 3px;
 }
 
@@ -545,6 +565,16 @@
   border-color: white;
   margin-left: 415px;
   margin-top: -27px;
+  margin-bottom: 3px;
+}
+
+.remove-favorite{
+  width:80px;
+  height: 25px;
+  background-color: rgb(252, 186, 3);
+  color: white;
+  border-radius: 5px;
+  border-color: white;
   margin-bottom: 3px;
 }
 
