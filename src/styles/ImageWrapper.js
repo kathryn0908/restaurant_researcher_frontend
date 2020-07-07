@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { faBalanceScale } from '@fortawesome/free-solid-svg-icons';
+import RestaurantCardStarRating from './RestaurantCardStarRating'
 
 export default class ImageWrapper extends Component {
     constructor(props) {
@@ -21,6 +22,7 @@ export default class ImageWrapper extends Component {
           src={this.props.restaurant.thumb} 
           alt='thumbnail'
           />
+        <RestaurantCardStarRating ratings={this.props.ratings} restaurant={this.props.restaurant.id}/>
         </div>
       );
     }

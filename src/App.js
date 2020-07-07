@@ -208,7 +208,7 @@ export default class App extends Component {
         <Switch>
         <Route  exact path='/' render={(props) => <Home {...props} trending={this.state.trending} restaurants={this.state.restaurants} />} />
         <Route path='/trendingrestaurants' render={(props) => <TrendingContainer {...props} trending={this.state.trending} />}/>
-        <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} restaurants={this.state.restaurants} favorites={this.state.favorites} addFavorite={this.addFavorite} />}/>
+        <Route exact path='/restaurants' render={(props) => <RestaurantContainer {...props} ratings={this.state.starRatings} restaurants={this.state.restaurants} favorites={this.state.favorites} addFavorite={this.addFavorite} />}/>
         <Route path='/restaurants/:id' render={(props) => <RestaurantShowPage {...props} restaurants={this.state.restaurants}  addReview={this.addReview} reviews={this.state.reviews} favorites={this.state.favorites} addFavorite={this.addFavorite} removeFavorite={this.removeFavorite} addStarRating={this.addStarRating} ratings={this.state.starRatings}/>}/>
         <Route path='/login' render={(props) => <Login {...props} login={this.login}/>}/>
         <Route path='/signup' render={(props) => <SignUp {...props} signup={this.signup}/>}/>

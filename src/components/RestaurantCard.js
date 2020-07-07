@@ -11,7 +11,7 @@ export default function RestaurantCard(props){
 
     return(
         <div onClick={handleClick}>
-            <ImageWrapper restaurant={props.restaurant}/>
+            <ImageWrapper restaurant={props.restaurant} ratings={props.ratings}/>
         </div>
     )
 }

@@ -9,7 +9,7 @@ export default function OverallStarRating(props){
 
   const displayOverallRating = () => {
     console.log(props.restaurant)
-    const restaurantRatings = props.ratings.filter(rating => rating.restaurant == props.match.params.id  )
+    const restaurantRatings = props.ratings.filter(rating => rating.restaurant == props.restaurant)
   
     const ratings = restaurantRatings.map(rating => rating.value)
     
@@ -45,7 +45,7 @@ export default function OverallStarRating(props){
 
  const useStyles = makeStyles({
     root: {
-      fontSize:'40px'
+      fontSize:'30px'
     }
   });
 
