@@ -4,7 +4,7 @@ DenverEats is an app that connects Denverites to local and trending restaurants 
 
 ## Video Walk Through
 
-- 
+- https://youtu.be/Y6DVE9tqDMw
 
 ## This App is avaiable online at:
 
