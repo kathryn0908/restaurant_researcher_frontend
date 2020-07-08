@@ -1,6 +1,6 @@
 # DenverEats 
 
-DenverEats is an app that connects Denverites to local and trending restaurants in their area. A user can browse our blogs, in the Trending section, that are updated weekly. We also offer the ability to write reviews that are posted to the restaurant's page. Finally, the app includes a personal profile where you can keep a list of favorites and displays your reviews of local restaurants.
+DenverEats is an app that connects Denverites to local and trending restaurants in their area. Do not be a sufferer of overchoice any longer! Enjoy curated restaurants that are updated weekly. A user can browse our blogs, in the Trending section, that are updated weekly. We also offer the ability to write reviews that are posted to the restaurant's page. Finally, the app includes a personal profile where you can keep a list of favorites and displays your reviews of local restaurants.
 
 ## Video Walk Through
 
