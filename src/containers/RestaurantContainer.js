@@ -18,8 +18,8 @@ export default function RestaurantContainer(props){
         <div className='localrestaurant-container'>
             <AppBar />
             <h1 className='header'>Local Denver Restaurants</h1>
-            <SearchBar {...props} restaurants={props.restaurants} ratings={props.ratings}/>
         </div>
+            <SearchBar {...props} restaurants={props.restaurants} ratings={props.ratings}/>
         <div className='container'>
             {displayRestaurants}
         </div>

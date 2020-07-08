@@ -54,7 +54,7 @@ export default function Restaurant(props){
                 </div>
             </div>
             <div className='page-styling'>
-                    <p className='rest-info'>Hours: {props.restaurant.timings}</p>
+                    <p className='rest-info'>Hours: {props.restaurant.timings}</p>      
                     <p className='rest-info'>Phone number: {props.restaurant.phone_number}</p>
                     <p className='rest-info'>Address: {props.restaurant.address}</p>
                     <p className='rest-info'>Delivery: {props.restaurant.has_online_delivery.toString()}</p>

@@ -26,7 +26,8 @@ filterCards = () => {
       
       return this.props.restaurants.filter(restaurant=>{
           return (
-              restaurant.name.toLowerCase().includes(this.state.term) || restaurant.cuisines.toLowerCase().includes(this.state.term) 
+              restaurant.name.toLowerCase().includes(this.state.term) 
+            //   || restaurant.cuisines.toLowerCase().includes(this.state.term) 
           )
       })
   } else if(this.props.trending){
@@ -90,12 +91,11 @@ searchResultsContainer = () => {
             <div className="searchresults-container">
               {this.state.term 
               ? <>
-                    <div className="results-div">
-                    <h1 className='results'>Results</h1>
+                    {/* <div className="results-div"> */}
+                    {/* <h1 className='results'>Results</h1> */}
                     
                     {/* <RatingsFilter ratings={this.props.ratings} restaurants={this.props.restaurants} term={this.props.term}/> */}
-                    </div>
-                    <div ></div>
+                    {/* </div> */}
                     {this.searchResultsContainer()}
                 </>
               : null}

@@ -10,8 +10,6 @@ export default function AppBar(){
             <Link className='menu' to='/restaurants'>Local Restaurants</Link>
             <Link className='menu' to='/login'>Login</Link>
             <Link className='menu' to='/profile'><FontAwesomeIcon icon="user" size='lg'/></Link>
-            
-        
         </div>
     )
 }
