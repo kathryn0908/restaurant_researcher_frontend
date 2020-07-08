@@ -28,14 +28,24 @@ export default function Restaurant(props){
          const restaurant = props.match.params.id
          props.addFavorite(user, restaurant)
      }
+
+     const showImages = () => {
+         const images = props.restaurant.images.split(',')
+         return images.map(image => {
+             return <img className='indiv-images' src={image} alt='image' />
+         })
+     }
     
      
 
     return(
         <>
+        <div className='rest-images'>
+       {props.restaurant.images ? showImages() : null}
+        </div>
             <div className='name-con'>
             <h1 className='name'>{props.restaurant.name}</h1> 
-            <div className='star-rating'><OverallStarRating {...props} ratings={props.ratings}/></div>
+            <div className='star-rating'><OverallStarRating {...props} ratings={props.ratings}/></div>   
             </div>
             <div className='order-online'>
                 <a className='order-link' href={props.restaurant.url}>Order Online</a> 

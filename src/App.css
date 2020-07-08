@@ -352,6 +352,19 @@
 
 }
 
+.rest-images{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+
+.indiv-images{
+  width: auto;
+  height: 250px;
+  margin-top: 5px;
+
+}
 .showpage-image{
   width: max-content;
  
