@@ -1,12 +1,16 @@
 import React from 'react';
 import RestaurantCard from '../components/RestaurantCard'
 import TrendingCard from '../components/TrendingCard'
+// import * as Scroll from 'react-scroll';
+// import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+// import RatingsFilter from './RatingsFilter'
 
 
 class SearchBar extends React.Component {
   state={
     term: ''
 }  
+
 onInputChange(term){
   this.setState({term});
 }
@@ -37,7 +41,9 @@ filterCards = () => {
 searchResultsContainer = () => {
   if(this.props.restaurants){
       return this.filterCards().map(restaurant=>{
-          return (<RestaurantCard {...this.props} restaurant={restaurant}/>)
+       return (
+            <RestaurantCard {...this.props} restaurant={restaurant} ratings={this.props.ratings}/>
+          )
       })
   } else if(this.props.trending){
       return this.filterCards().map(trending=>{
@@ -47,22 +53,51 @@ searchResultsContainer = () => {
 }
 
 
+
+
+// scrollToResults = () => {
+//     this.results.current.scrollIntoView({ behavior: "smooth" });
+//   }
+
+// sortRatingByAsc = () => {
+//     if(this.props.restaurants.reviews){
+//         const results = this.filterCards().map(restaurant => restaurant.reviews[0].rating)
+//         console.log(results)
+//     }
+
+    // const ratingsA = results..sort((a, b) => (a.value - b.value))
+//  };
+ 
+
+// sortRatingByDesc = () => {
+//    this.props.ratings.sort((a, b) => (b.value - a.value))
+// }
+
+
+
     render() {
       
         return (
           <>
             <div className="search-container">
                 <div className="search-box">
-                    <form>
+                    <form className="search-box">
                         <input  className="search-input" id="search" type="text" placeholder="Search" value={this.state.term}
                             onChange={event=>this.onInputChange(event.target.value)} />
-                        {/* <input type="submit" className='submit' /> */}
                     </form>
                 </div>
             </div>
             <div className="searchresults-container">
               {this.state.term 
-              ? this.searchResultsContainer()
+              ? <>
+                    <div className="results-div">
+                    <h1 className='results'>Results</h1>
+                    
+                    {/* <RatingsFilter ratings={this.props.ratings} restaurants={this.props.restaurants} term={this.props.term}/> */}
+                    </div>
+                    <div ></div>
+                    {this.searchResultsContainer()}
+                </>
               : null}
          </div>
           </>

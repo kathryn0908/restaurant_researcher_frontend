@@ -12,7 +12,7 @@ export default function Restaurant(props){
          })
          const sortReviews = foundReview.reverse();
         return sortReviews.map((review) => {
-             return <ReviewCard review={review} key={review.id} ratings={props.ratings} />
+             return <ReviewCard review={review} key={review.id} ratings={props.ratings} users={props.users} />
          })
      }
 

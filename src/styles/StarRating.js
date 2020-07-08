@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-import OverallStarRating from './OverallStarRating';
+
 
 
 export default class StarRating extends Component{
@@ -21,6 +21,7 @@ export default class StarRating extends Component{
     const restaurant = this.props.match.params.id
     this.props.addStarRating(value, user, restaurant)
   }
+  
 
   render(){
     return (
