@@ -6,12 +6,20 @@ DenverEats is an app that connects Denverites to local and trending restaurants 
 
 - https://youtu.be/Y6DVE9tqDMw
 
-## This App is avaiable online at:
+## Installation
+This website can currently only be accessed from a local environment. Please fork and clone this repository for the front-end, as well as the back-end repository:
+
+https://github.com/kathryn0908/restaurant_api
+
+Run back-end server first on port 8000: http://127.0.0.1:8000/.
+
+Then front-end server on port 3001: http://localhost:3001/.
 
 ## Github Repo:
 https://github.com/kathryn0908/restaurant_researcher_frontend
 
-
+## Backend Repo: 
+https://github.com/kathryn0908/restaurant_api
 
 ## Programmming Languages Used for this project:
 
@@ -25,7 +33,6 @@ Create Reviews
 Add a restaurant to your personal favorites
 Find places that have takeout and be sent directly to the restaurant's order online page
 Browse categories of trending restaurants, including: coffee shops, locations with games, and much more!
-
 
 
 ## Developers
