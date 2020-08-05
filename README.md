@@ -34,6 +34,9 @@ Add a restaurant to your personal favorites
 Find places that have takeout and be sent directly to the restaurant's order online page
 Browse categories of trending restaurants, including: coffee shops, locations with games, and much more!
 
+## Blog Posts inspired by this project:
+https://dev.to/kathryn0908/step-by-step-guide-on-how-to-set-up-a-django-database-2fgn
+https://dev.to/kathryn0908/step-by-step-guide-on-how-to-set-up-a-django-database-pt-2-model-view-and-serializer-3kj1
 
 ## Developers
 
