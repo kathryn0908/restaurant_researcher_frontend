@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 
 export default function OverallStarRating(props){

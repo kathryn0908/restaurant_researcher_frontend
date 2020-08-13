@@ -25,7 +25,6 @@ export default class RatingsFilter extends Component{
       
 
     render(){
-        // console.log(this.props.ratings)
         return(
             <>
             <div>

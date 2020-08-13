@@ -82,7 +82,6 @@ export default class App extends Component {
     })
     .then(resp => resp.json())
     .then(result => {
-      console.log(result)
       localStorage.setItem('token', result.password)
       localStorage.setItem('id', result.id)
       localStorage.setItem('favorites', result.favorites)
@@ -109,7 +108,6 @@ export default class App extends Component {
       localStorage.setItem('id', u.id)
       let reviews = u.reviews.map(u => u.review)
       localStorage['reviews'] = JSON.stringify(reviews)
-      console.log(u)
     } 
     fetch('http://127.0.0.1:8000/login/',{
       method: "POST",
@@ -129,9 +127,6 @@ export default class App extends Component {
   }
 
   addFavorite = (user, restaurant) => {
-   
-    console.log(user)
-    console.log(restaurant)
     fetch('http://127.0.0.1:8000/favorites/',{
       method: "POST",
       headers:{
@@ -155,7 +150,6 @@ export default class App extends Component {
       },
     })
     let newFavorites = this.state.favorites.filter(favorite => favorite.id !== id)
-    console.log(this.state.favorites)
     this.setState({favorites: newFavorites})
   }
 
@@ -168,7 +162,6 @@ export default class App extends Component {
       body: JSON.stringify({review, user, name, restaurant, rating})
     }).then(resp => resp.json())
     .then(newReview => {
-      console.log(newReview)
       this.setState({
         reviews: [...this.state.reviews, newReview]
       })
@@ -195,7 +188,6 @@ export default class App extends Component {
       body: JSON.stringify({value, user, restaurant})
     }).then(resp => resp.json())
     .then(newRating => {
-      console.log(newRating)
       this.setState({
         starRatings: [...this.state.starRatings, newRating]
       })

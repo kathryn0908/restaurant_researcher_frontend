@@ -4,11 +4,6 @@ import AppBar from '../styles/AppBar'
 import SearchBar from '../styles/SearchBar'
 
 
-
-
-
-
-
 export default function RestaurantContainer(props){
      
     const displayRestaurants = props.restaurants.slice(0,20).map(restaurant => <RestaurantCard {...props} ratings={props.ratings} restaurant={restaurant} key={restaurant.id} />)

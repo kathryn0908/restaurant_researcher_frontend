@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import { faBalanceScale } from '@fortawesome/free-solid-svg-icons';
 import RestaurantCardStarRating from './RestaurantCardStarRating'
 
 export default class ImageWrapper extends Component {

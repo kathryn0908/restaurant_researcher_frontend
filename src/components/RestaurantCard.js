@@ -1,8 +1,6 @@
 import React from 'react'
 import ImageWrapper from '../styles/ImageWrapper'
 
-
-
 export default function RestaurantCard(props){
 
     const handleClick = () => {

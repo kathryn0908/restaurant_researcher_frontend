@@ -11,13 +11,9 @@ export default class StarRating extends Component{
   }
 
   handleClick = (event) => {
-    
     const value = event.target.value
-    console.log(value)
     this.setState({value: event.target.value})
     const user = localStorage.getItem('id')
-    console.log(user)
-    console.log(this.props.match.params.id)
     const restaurant = this.props.match.params.id
     this.props.addStarRating(value, user, restaurant)
   }

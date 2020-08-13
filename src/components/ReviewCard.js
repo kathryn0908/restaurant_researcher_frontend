@@ -1,7 +1,7 @@
 import React from 'react';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default function ReviewCard(props){
 
@@ -9,7 +9,6 @@ export default function ReviewCard(props){
     
     const useStyles = makeStyles({
         root: {
-        //   marginTop:"-40px",
           marginLeft:"25%"
         }
       });

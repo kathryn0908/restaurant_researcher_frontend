@@ -25,8 +25,6 @@ export default class Review extends Component{
     handleClick = (event) => {
         const rating = event.target.value
         const user = localStorage.getItem('id')
-        console.log(user)
-        console.log(this.props.match.params.id)
         const restaurant = this.props.match.params.id
         this.props.addStarRating(rating, user, restaurant)
         document.querySelector('.review-form').reset();
@@ -47,9 +45,6 @@ export default class Review extends Component{
     }
 
    
-
-
-
     render(){
         if(!this.state.reviewForm){
             return(
